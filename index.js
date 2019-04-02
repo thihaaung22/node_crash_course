@@ -1,13 +1,11 @@
-const Person = require("./person");
-const Logger = require("./logger");
+const http = require("http");
+const path = require("path");
+const fs = require("fs");
 
-const logger = new Logger();
+const server = http.createServer((req, res) => {
+  console.log(req.url);
+});
 
-//need to on the EventEmitter class to use
-logger.on("message", data => console.log("Called Listener: ", data));
-logger.log("Hello World");
+const PORT = process.env.PORT || 5000;
 
-const person1 = new Person("John Doe", 30);
-person1.greeting();
-
-console.log("Second Commit Works");
+server.listen(PORT, () => console.log(`Server Running on Port: ${PORT}`));
